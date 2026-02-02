@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+    <div class="header-with-action">
+        <div>
+            <h2>{{ title }}</h2>
+            <p class="subtitle">Semantic analysis comparison results</p>
+        </div>
+        <a href="/reports" class="btn btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
+            Back to Reports
+        </a>
+    </div>
+</div>
+
+<div class="results-container">
+    <!-- Matches Section -->
+    <section class="result-section">
+        <div class="section-header success">
+            <div class="section-title">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <h3>Matches & Related Content</h3>
+            </div>
+            {% if result.match %}
+            <span class="count-badge success">{{ result.match|length }} matches</span>
+            {% endif %}
+        </div>
+
+        {% if result.match %}
+        <div class="table-wrapper">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>PDF A Sentence</th>
+                        <th>PDF B Sentence</th>
+                        <th>Similarity</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for m in result.match %}
+                    <tr
+                        class="{% if m.type == 'strong_match' %}match-strong{% elif m.type == 'paraphrase_or_related' %}match-paraphrase{% endif %}">
+                        <td>
+                            <div class="cell-content">{{ m.pdfA }}</div>
+                        </td>
+                        <td>
+                            <div class="cell-content">{{ m.pdfB }}</div>
+                        </td>
+                        <td>
+                            <div class="similarity-badge">{{ m.similarity }}</div>
+                        </td>
+                        <td>
+                            <span
+                                class="type-badge {% if m.type == 'strong_match' %}badge-success{% else %}badge-warning{% endif %}">
+                                {{ m.type|replace('_', ' ')|title }}
+                            </span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-result">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <p>No semantic matches found between the documents.</p>
+        </div>
+        {% endif %}
+    </section>
+
+    <!-- Missing Content Section -->
+    <section class="result-section">
+        <div class="section-header danger">
+            <div class="section-title">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <h3>Missing & Unmatched Content</h3>
+            </div>
+            {% if result.no_match %}
+            <span class="count-badge danger">{{ result.no_match|length }} unmatched</span>
+            {% endif %}
+        </div>
+
+        {% if result.no_match %}
+        <div class="table-wrapper">
+            <table class="modern-table">
+                <thead>
+                    <tr>
+                        <th>PDF A Sentence</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for n in result.no_match %}
+                    <tr class="match-missing">
+                        <td>
+                            <div class="cell-content">{{ n.pdfA }}</div>
+                        </td>
+                        <td>
+                            <span class="reason-badge">{{ n.reason }}</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="empty-result">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <p>All content from PDF A has matching content in PDF B.</p>
+        </div>
+        {% endif %}
+    </section>
+</div>
+
+{% endblock %}
