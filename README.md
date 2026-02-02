@@ -28,6 +28,7 @@ The application uses transformer-based sentence embeddings to identify similar c
 ---
 
 ## Project Structure
+```text
 pdf_semantic_compare/
 │
 ├── app.py # FastAPI application entry point
@@ -54,6 +55,7 @@ pdf_semantic_compare/
 │
 ├── uploads/ # Uploaded PDF files
 └── venv/ # Local virtual environment
+```
 
 ## How It Works
 
