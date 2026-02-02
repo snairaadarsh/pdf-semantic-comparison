@@ -73,6 +73,68 @@ pdf_semantic_compare/
 
 7.Reports are saved locally and can be viewed later
 
+## Example Text Output
+
+```text
+{
+  "match": [
+    {
+      "pdfA": "Radiographic examination was carried out in 100% area as per ASTM E94-2017",
+      "pdfB": "Radiography Test Procedure: ASME Sec VIII, Div.",
+      "similarity": 0.685,
+      "type": "paraphrase_or_related"
+    }
+  ],
+  "no_match": [
+    {
+      "pdfA": "Heat treatment carried out at 1150°C",
+      "reason": "No semantic equivalent found in PDF B"
+    },
+    {
+      "pdfA": "Soaking for 6 hours",
+      "reason": "No semantic equivalent found in PDF B"
+    },
+    {
+      "pdfA": "Water quench stabilised at 950°C for 6 hours",
+      "reason": "No semantic equivalent found in PDF B"
+    },
+    {
+      "pdfA": "Final water quenching step",
+      "reason": "No semantic equivalent found in PDF B"
+    },
+    {
+      "pdfA": "Visual inspection carried out as per ANSI/MSS SP 55-2011",
+      "reason": "No semantic equivalent found in PDF B"
+    },
+    {
+      "pdfA": "Compliance with NACE MR0175 / ISO 15156 / MR0103 standards",
+      "reason": "No semantic equivalent found in PDF B"
+    },
+    {
+      "pdfA": "Chemical testing performed as per ASTM A751-2021",
+      "reason": "No semantic equivalent found in PDF B"
+    },
+    {
+      "pdfA": "Tensile and hardness testing as per ASTM A370-2024",
+      "reason": "No semantic equivalent found in PDF B"
+    },
+    {
+      "pdfA": "Confirmation of ESB M-2128 Rev.08",
+      "reason": "No semantic equivalent found in PDF B"
+    },
+    {
+      "pdfA": "No major weld repair performed on casting",
+      "reason": "No semantic equivalent found in PDF B"
+    },
+    {
+      "pdfA": "DPI test conducted as per ASTM E165 and ASME Section V & VIII",
+      "reason": "No semantic equivalent found in PDF B"
+    }
+  ]
+}
+
+```
+
 ## Notes
 
 -The application runs entirely locally
