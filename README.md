@@ -135,8 +135,12 @@ pdf_semantic_compare/
 
 ```
 
+## Results Screenshot
+
+- Screenshots og the implementation in Results directory
+
 ## Notes
 
--The application runs entirely locally
--Performance depends on PDF size and selected embedding model
--Larger models (e.g. SBERT) may require more system memory
+- The application runs entirely locally
+- Performance depends on PDF size and selected embedding model
+- Larger models (e.g. SBERT) may require more system memory
