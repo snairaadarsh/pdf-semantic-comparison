@@ -137,7 +137,7 @@ pdf_semantic_compare/
 
 ## Results Screenshot
 
-- Screenshots og the implementation in Results directory
+- Screenshots of the implementation in Results directory
 
 ## Notes
 
